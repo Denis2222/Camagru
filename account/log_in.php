@@ -2,6 +2,12 @@
 $login = trim(htmlspecialchars($_POST['login']));
 $passwd = hash(whirlpool, htmlspecialchars($_POST['passwd']));
 
+//$var = "denis";
+
+//$sql = "SELECT * FROM user WHERE login = '".$var."'";
+//echo $sql;
+//	$cursor = $db->query($sql);
+
 function checkLogIn ($db, $login, $passwd) {
 	$cursor = $db->query('SELECT * FROM user');
 	while ($data = $cursor->fetch()) {
@@ -27,9 +33,8 @@ if ($_POST['submit'] == 'OK')
 	}
 if ($_SESSION["logged_user"])
 {
-	?>
-		<script type="text/javascript">document.href="index.php"</script>
-	<?php
+	header('Location: ./');
+	exit;
 }
 
 ?>
@@ -44,5 +49,7 @@ if ($_SESSION["logged_user"])
 	Mot de passe : <input type="password" name="passwd" value=""><br />
 	<input type="submit" name="submit" value="OK">
 </form>
-<p>Don't have an account?<p>
-<a href="?page=sign_in">Sign In<a>
+<p>Password lost? <a href="?page=pwdlost">Reset Password<a><p>
+
+
+<p>Don't have an account? <a href="?page=sign_in">Sign In<a><p>

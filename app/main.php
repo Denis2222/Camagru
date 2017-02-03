@@ -15,9 +15,10 @@ echo "<p> Bonjour $user !</p>";
 <canvas id="canvas"></canvas>
 
 <form method="POST" action="upload.php">
-	<input type="hidden" name="img" id="postcache">
-	<input type="submit" id="send" name="submit" value="send">
+	<input type="hidden" id="postcache" name="img" >
+	<input type="submit" id="send"      name="submit" value="send">
 </form>
+
 <div class="images">
 	<img src="./resources/bower.png" id="bower" class="toy" draggable="true">
 	<img src="https://media.giphy.com/media/bnZO61TOFUNXy/giphy.gif" id="fire">

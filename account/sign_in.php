@@ -54,19 +54,25 @@ if ($_POST['submit'] == 'OK') {
 			'email' => $email,
 			'passwd' => $passwd,
 			));
-		$cursor = $db->query('SELECT * FROM user');
+		$cursor = $db->query('SELECT * FROM user WHERE login = "' . $login . '"');
 		$_SESSION['logged_user'] = $login;
-		/*while ($data = $cursor->fetch()) {
-			echo $data['login'] . '<br />';
-			echo $data['email'] . '<br />';
-			echo $data['passwd'] . '<br /><br />';
+		while ($data = $cursor->fetch()) {
+			if ($data['login'] == $login) {
+				mail($email, 'Inscription', "Vous venez de vous inscrire sur ce super site inutile ! Bravo !");
+			}
 		}
-		$cursor->closeCursor();*/
+		$cursor->closeCursor();
 	}
 }
 
 if ($_SESSION["logged_user"])
-	header('Location: index.php');
+{
+	?>
+		<SCRIPT LANGUAGE="JavaScript">
+			document.location.href="./"
+		</SCRIPT>
+	<?php
+}
 include 'layout/header.php';
 ?>
 

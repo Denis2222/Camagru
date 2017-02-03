@@ -23,8 +23,8 @@ header .menu-item {
 
 #cam{
 	position: relative;
-	width: 320px;
-	height: 280px;
+	width: 640px;
+	height: 560px;
 }
 
 #cam #video{
