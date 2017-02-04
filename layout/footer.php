@@ -1,8 +1,6 @@
-<?php
-session_start();
-?>
-	<footer>
+	<footer class="footer">
 		FOOTER
 	</footer>
+</div>
 </body>
 </html>
