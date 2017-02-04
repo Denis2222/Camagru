@@ -39,8 +39,9 @@ if(isset($_POST['addable'])){
 			echo '<img src="'.$file.'" class="addabletoy">';
 		}
 	?>
-	<p>Cliquez sur les images pour ajouter:</p>
+
 	<form method="POST" action="" enctype='multipart/form-data'>
+		Cliquez sur les images pour ajouter:
 		<input type="file" id="newaddable" name="newaddable" >
 		<input type="submit" name="addable" value="ADD">
 	</form>
