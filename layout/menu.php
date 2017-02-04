@@ -1,9 +1,8 @@
-<aside class="aside-2">
+<p>Menu</p>
 <?php
-$sql = "SELECT * FROM img";
+$sql = "SELECT * FROM img ORDER BY id DESC LIMIT 4";
 foreach  ($db->query($sql) as $row) {
 
-	echo '<div class="thumb"><img src="./rendu/pict-'.$row['id'].'.jpeg"></div>';
+	echo '<div class="thumb" style="background-image:url(\''.$renderDir.'pict-'.$row['id'].'.jpeg\');"></div>';
 }
 ?>
-</aside>

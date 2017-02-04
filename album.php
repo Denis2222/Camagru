@@ -9,6 +9,8 @@ if ($_GET['action'] == "delete" && $_GET['id'] > 0) {
 		unlink($renderDir.'pict-'.$id.'.jpeg');
 }
 
+echo '<p>Galery</p>';
+
 $sql = "SELECT * FROM img";
 foreach  ($db->query($sql) as $row) {
 

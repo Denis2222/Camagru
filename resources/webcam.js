@@ -1,5 +1,5 @@
 (function() {
-
+    document.body.oncontextmenu = function(){return false;}
     var streaming = false,
         video = document.querySelector('#video'),
         cover = document.querySelector('#cover'),
@@ -50,6 +50,7 @@
           }
           imgSelected = null;
         }
+        takepicture();
     }
 
     function handler(event) {
@@ -176,10 +177,4 @@
         document.querySelector("#jsoncache").value = JSON.stringify(tab);
         document.querySelector("#postcache").value = canvas.toDataURL('image/png');
     }
-
-    startbutton.addEventListener('click', function(ev) {
-        takepicture();
-        ev.preventDefault();
-    }, false);
-
 })();
