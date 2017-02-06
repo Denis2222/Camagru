@@ -45,11 +45,20 @@
           console.log(cumulativeOffset(video));
           console.log(cumulativeOffset(imgSelected));
 
-          if (cumulativeOffset(imgSelected).left > 600 )
-          {
-            imgSelected.removeEventListener('mousedown', mouseDown, false);
-            imgSelected.removeEventListener('mouseup', mouseDown, false);
-            imgSelected.parentNode.removeChild(imgSelected);
+          var toys = document.getElementsByClassName('toy');
+
+
+            if (cumulativeOffset(imgSelected).left > canvas.width || cumulativeOffset(imgSelected).top > canvas.height )
+            {
+              if (toys.length > 1)
+              {
+              console.log("OUT");
+              imgSelected.removeEventListener('mousedown', mouseDown, false);
+              imgSelected.removeEventListener('mouseup', mouseDown, false);
+              imgSelected.parentNode.removeChild(imgSelected);
+            } else {
+              alert("Minimum 1 img");
+            }
           }
           imgSelected = null;
         }
@@ -162,12 +171,16 @@
           alert("Minimum une image");
           return (0);
         }
-        canvas.width = width;
-        canvas.height = height;
-        if (nocam)
-          canvas.getContext('2d').drawImage(document.querySelector("photoimg"), 10, 10);
-        else
+
+        if (nocam) {
+          canvas.width = document.getElementById("photoimg").clientWidth;
+          canvas.height = document.getElementById("photoimg").clientHeight;
+          canvas.getContext('2d').drawImage(document.getElementById("photoimg"), 0, 0);
+        } else {
+          canvas.width = width;
+          canvas.height = height;
           canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+        }
 
         function getStyle(elem,type) {
           return parseInt(elem.style[type]);
@@ -186,4 +199,6 @@
         document.querySelector("#jsoncache").value = JSON.stringify(tab);
         document.querySelector("#postcache").value = canvas.toDataURL('image/png');
     }
+
+    takepicture();
 })();

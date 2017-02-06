@@ -33,13 +33,16 @@
     		case 	'pwdreset':
     			include 'account/pwdreset.php';
     			break;
+        default:
+          include 'album.php';
+          break;
     	}
-    } else if ($_GET['page'] == 'gallery') {
+    } else if ($_GET['page'] == 'gallery' || !$_GET['page']) {
       include 'album.php';
     } else if ($_GET['page'] == 'photo') {
     		include 'app/main.php';
     }
-    
+
     ?>
   </article>
 

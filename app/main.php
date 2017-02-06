@@ -1,5 +1,8 @@
 <?php
-
+if ($_GET['action'] == "reset")
+{
+  unset($_SESSION['tmp_img']);
+}
 if(isset($_POST['addable'])){
     if(@getimagesize($_FILES['newaddable']['tmp_name']) == FALSE){
         echo "<span class='image_select'>please select an image</span>";
@@ -64,13 +67,14 @@ if(isset($_POST['altimage'])){
   		<input type="submit" name="altimage" value="ADD">
   	</form>
     <?php } else {
-      echo '<img id="photoimg" src="'.$_SESSION['tmp_img'].'">';
+      echo '<img id="photoimg" src="'.$_SESSION['tmp_img'].'">
+      <a class="del" href="index.php?page=photo&action=reset">
+        <img src="./resources/delete.png">
+      </a>';
     }?>
   </div>
 	<video id="video"></video>
-	<img src="./toy/bower.png" class="toy" style="top:0px;left:0px;width:160px;">
-	<img src="./toy/bower.png" class="toy" style="top:0px;left:40px;width:160px;">
-	<img src="./toy/dino.png" class="toy" style="top:50px;left:80px;width:160px;">
+	<img src="./toy/45777f7a.png" class="toy" style="top:50px;left:80px;width:160px;">
 </div>
 
 <div id="addable">
