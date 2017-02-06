@@ -64,7 +64,7 @@ if(isset($_POST['altimage'])){
   		<input type="submit" name="altimage" value="ADD">
   	</form>
     <?php } else {
-      echo '<img src="'.$_SESSION['tmp_img'].'">';
+      echo '<img id="photoimg" src="'.$_SESSION['tmp_img'].'">';
     }?>
   </div>
 	<video id="video"></video>

@@ -11,6 +11,7 @@
         startbutton = document.querySelector('#startbutton'),
         width = 640,
         height = 480,
+        nocam = false;
         imgs = document.getElementsByClassName('toy');
 
     var imgSelected;
@@ -136,7 +137,7 @@
             photo.style.visibility = 'hidden';
         },
         function(err) {
-
+          nocam = true;
           console.log("An error occured! " , err);
         }
     );
@@ -163,7 +164,10 @@
         }
         canvas.width = width;
         canvas.height = height;
-        canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+        if (nocam)
+          canvas.getContext('2d').drawImage(document.querySelector("photoimg"), 10, 10);
+        else
+          canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 
         function getStyle(elem,type) {
           return parseInt(elem.style[type]);
