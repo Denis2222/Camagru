@@ -1,5 +1,7 @@
 (function() {
+    //DISABLE RIGHT CLICK
     document.body.oncontextmenu = function(){return false;}
+
     var streaming = false,
         video = document.querySelector('#video'),
         cover = document.querySelector('#cover'),
@@ -131,13 +133,16 @@
                 video.src = vendorURL.createObjectURL(stream);
             }
             video.play();
+            photo.style.visibility = 'hidden';
         },
         function(err) {
-            console.log("An error occured! " + err);
+
+          console.log("An error occured! " , err);
         }
     );
 
     video.addEventListener('canplay', function(ev) {
+      photo.parentNode.removeChild(photo);
         if (!streaming) {
             height = video.videoHeight / (video.videoWidth / width);
             video.setAttribute('width', width);
