@@ -29,11 +29,20 @@
 }
 
 .main {
-	border-radius: 0px;
-	box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
-	background-color: #fff;
+  padding: 0;
+}
+
+.decobox {
+  border-radius: 0px;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+  background-color: #fff;
   margin: 20px 20px;
-  padding: .5vw;
+  padding: 5px;
+}
+
+
+.gallery {
+
   display: -ms-flexbox;
   -ms-flex-wrap: wrap;
   -ms-flex-direction: column;
@@ -41,33 +50,43 @@
   flex-flow: row wrap;
   display: -webkit-box;
   display: flex;
+  justify-content: center; /* center items horizontally, in this case */
+    align-items: center;  
 }
 
-.main .thumb {
+.gallery .thumb {
   -webkit-box-flex: auto;
   -ms-flex: auto;
-  flex: auto;
-  width: 200px;
-  margin: .5vw;
   position: relative;
+  margin: 5px;
 }
 
 .del{
 	position: absolute;
-	right: 0;
-	top: 0;
-  width:40px;
-  height:40px;
+	right: 10px;
+	top: 10px;
+  width:30px;
+  height:30px;
 }
 
-.del img {
-  width: 100%;
-  height: auto;
+.thumb .del img {
+  width: 30px;
 }
 
-.main .thumb img {
+.thumb .pict {
+  width: 330px;
+  height: 200px;
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+}
+
+.imgfull {
   width: 100%;
-  height: auto;
+}
+
+.imgfull img{
+      width: 100%;
 }
 
 #cam{
@@ -88,11 +107,6 @@
 	position:absolute;
 	top:0px;
 	left:0px;
-}
-
-.thumb a img{
-	width: 50px;
-	padding: 5px
 }
 
 .aside-1 {
@@ -191,4 +205,9 @@ body {
 html {
   padding:0;
   margin:0;
+}
+
+form {
+  padding: 0;
+  margin: 0;
 }
