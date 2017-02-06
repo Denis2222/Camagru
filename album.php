@@ -11,8 +11,10 @@ if ($_GET['action'] == "delete" && $_GET['id'] > 0) {
 
 if ($_GET['action'] == "view" && $_GET['id'] > 0) {
   $id = intval($_GET['id']);
+  echo "<div class='view'>";
   echo   '<img src="./rendu/pict-'.$id.'.jpeg">';
   include "layout/form/com.php";
+  echo "</div>";
 }
 
 echo '<p>Galery</p>';
