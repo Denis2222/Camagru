@@ -56,7 +56,7 @@ if(isset($_POST['altimage'])){
 }
 
 ?>
-<div>
+<div class="decobox">
 <div id="cam">
   <div id="photo">
     <?php if (!$_SESSION['tmp_img']) { ?>
@@ -74,20 +74,19 @@ if(isset($_POST['altimage'])){
     }?>
   </div>
 	<video id="video"></video>
-	<img src="./toy/45777f7a.png" class="toy" style="top:50px;left:80px;width:160px;">
 </div>
 
 <div id="addable">
 
+Cliquez sur les images pour ajouter a la scene:<br />
 	<?php
 		$files = glob('./toy/*.png');
 		foreach($files as $file) {
 			echo '<img src="'.$file.'" class="addabletoy">';
 		}
-	?>
-
+	?><br />
+Ajoutez un image au format PNG:<br />
 	<form method="POST" action="" enctype='multipart/form-data'>
-		Cliquez sur les images pour ajouter:
 		<input type="file" id="newaddable" name="newaddable" >
 		<input type="submit" name="addable" value="ADD">
 	</form>
@@ -96,6 +95,6 @@ if(isset($_POST['altimage'])){
 	<form id="theForm" name="theForm" method="POST" action="upload.php">
 		<input type="hidden" id="postcache" name="img" >
 		<input type="hidden" id="jsoncache" name="toys" >
-		<input type="submit" id="send" name="submit" value="Enregistrer">
+		<input type="submit" id="send" onclick="if(document.getElementsByClassName('toy').length===0){alert('Minimum 1 image');return false;}takepicture();return true;" name="submit" value="Enregistrer">
 	</form>
 </div>

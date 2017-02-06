@@ -40,6 +40,29 @@
   padding: 5px;
 }
 
+.com-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.com-container .com{
+  border-radius: 0px;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+  background-color: #f9f9f9;
+  padding: 5px;
+  margin: 5px;
+}
+
+.com .login {
+  color: crimson;
+  font-variant: small-caps;
+}
+
+.com .text {
+  font-weight: normal;
+  font-size: 13px;
+  text-align: justify;
+}
 
 .gallery {
 
@@ -51,7 +74,7 @@
   display: -webkit-box;
   display: flex;
   justify-content: center; /* center items horizontally, in this case */
-    align-items: center;  
+    align-items: center;
 }
 
 .gallery .thumb {
@@ -86,7 +109,7 @@
 }
 
 .imgfull img{
-      width: 100%;
+  width: 100%;
 }
 
 #cam{
@@ -123,6 +146,10 @@
   margin: 20px 20px;
 }
 
+.toy {
+    cursor:move;
+}
+
 .aside-2 .thumb{
   background-size:cover;
   width: 100px;
@@ -131,11 +158,12 @@
 }
 #addable {
   margin:10px;
+
 }
 
 #addable img {
 	width:100px;
-  cursor:pointer;
+  cursor:copy;
 }
 
 @media all and (min-width: 850px) {

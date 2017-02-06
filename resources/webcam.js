@@ -1,5 +1,10 @@
+var takepicture;
 (function() {
     //DISABLE RIGHT CLICK
+
+    if (document.getElementById("video") === null)
+      return (false);
+
     document.body.oncontextmenu = function(){return false;}
 
     var streaming = false,
@@ -47,18 +52,11 @@
 
           var toys = document.getElementsByClassName('toy');
 
-
             if (cumulativeOffset(imgSelected).left > canvas.width || cumulativeOffset(imgSelected).top > canvas.height )
             {
-              if (toys.length > 1)
-              {
-              console.log("OUT");
               imgSelected.removeEventListener('mousedown', mouseDown, false);
               imgSelected.removeEventListener('mouseup', mouseDown, false);
               imgSelected.parentNode.removeChild(imgSelected);
-            } else {
-              alert("Minimum 1 img");
-            }
           }
           imgSelected = null;
         }
@@ -103,7 +101,8 @@
       var div = imgSelected;
 
       console.log((e.clientX-offX));
-      div.style.width = div.clientWidth+(e.clientX-offX-scale)/10 + 'px';
+      if (div.clientWidth+(e.clientX-offX-scale)/10 > 10)
+        div.style.width = div.clientWidth+(e.clientX-offX-scale)/10 + 'px';
     }
 
     for (var i = 0; i < imgs.length; i++) {
@@ -124,6 +123,7 @@
       newelem.addEventListener('mousedown', mouseDown, false);
       newelem.addEventListener('mouseup', mouseUp, false);
       cam.appendChild(newelem);
+      takepicture();
     }
 
     var addables = document.getElementsByClassName('addabletoy');
@@ -148,6 +148,7 @@
         function(err) {
           nocam = true;
           console.log("An error occured! " , err);
+          video.style.display = 'none';
         }
     );
 
@@ -163,14 +164,9 @@
         }
     }, false);
 
-    function takepicture() {
+    takepicture = function () {
 
       var toys = document.getElementsByClassName('toy');
-
-        if (toys.length == 0) {
-          alert("Minimum une image");
-          return (0);
-        }
 
         if (nocam) {
           canvas.width = document.getElementById("photoimg").clientWidth;
