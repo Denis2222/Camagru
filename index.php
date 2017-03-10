@@ -33,6 +33,9 @@
     		case 	'pwdreset':
     			include 'account/pwdreset.php';
     			break;
+        case 	'signconfirm':
+    			include 'account/signconfirm.php';
+    			break;
         default:
           include 'album.php';
           break;
@@ -42,7 +45,6 @@
     } else if ($_GET['page'] == 'photo') {
     		include 'app/main.php';
     }
-
     ?>
   </article>
 

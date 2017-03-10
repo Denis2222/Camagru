@@ -8,6 +8,17 @@ try{
 
   $renderDir = './rendu/';
 
+	function mess($txt)
+	{
+		?>
+		<SCRIPT LANGUAGE="JavaScript">
+			setTimeout(function (){
+				alert("<?php echo addslashes($txt);?>");
+			}
+			,1);
+		</SCRIPT>
+		<?php
+	}
 
 	function checkLogInSignIn($login) {
 		$login_ws = str_replace (' ', '', $login);

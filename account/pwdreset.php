@@ -17,14 +17,16 @@ if ($_POST['PWDRESET'] == 'Modifier') {
   $req->closeCursor();
 
   if ($data['nb'] == 1) {
-              ?>
-              <form method="post" action="">
-              	<p>Pour changer votre mot de passe</p>
-              	Nouveau mot de passe : <input type="text" name="newpasswd" value="" ><br />
-                <input type="hidden" name="token" value="<?php echo $token;?>" ><br />
-              	<input type="submit" name="PWDRESET" value="Modifier">
-              </form>
-              <?php
+    ?>
+    <div class="view decobox">
+      <form method="post" action="">
+      	<p>Pour changer votre mot de passe</p>
+      	Nouveau mot de passe : <input type="text" name="newpasswd" value="" ><br />
+        <input type="hidden" name="token" value="<?php echo $token;?>" ><br />
+      	<input type="submit" name="PWDRESET" value="Modifier">
+      </form>
+    </div>
+    <?php
   } else {
     echo 'Token Timeout';
   }

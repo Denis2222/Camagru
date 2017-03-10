@@ -18,10 +18,16 @@ if ($_POST['submit'] == 'OK') {
 			'passwd' => $passwd,
 			));
 		$cursor = $db->query('SELECT * FROM user WHERE login = "' . $login . '"');
-		$_SESSION['logged_user'] = $login;
+
 		while ($data = $cursor->fetch()) {
 			if ($data['login'] == $login) {
-				mail($email, 'Inscription', "Vous venez de vous inscrire sur ce super site inutile ! Bravo !");
+
+				$token = bin2hex(random_bytes(30));
+		    $req = $db->exec("UPDATE user SET confirm = '".$token."' WHERE login = '".$login."' ");
+		    mail($email, 'Confirmation de votre inscription sur camagru', "Valider ce lien afin 'activer votre compte http://localhost:8080/Camagru/index.php?page=signconfirm&token=".$token);
+		    echo 'Email de confirmation envoye';
+
+				//mail($email, 'Inscription', "Vous venez de vous inscrire sur ce super site inutile ! Bravo !");
 			}
 		}
 		$cursor->closeCursor();
@@ -37,11 +43,11 @@ if ($_SESSION["logged_user"])
 	<?php
 }
 ?>
-
+<div class="view decobox">
 <form method="post" action="">
 	<?php
 		if ($error)
-			echo "<p>$error</p>";
+			mess($error);
 	?>
 	<p> CREATE ACCOUNT </p>
 	Identifiant : <input type="text" name="login" value="<?php echo $_POST['login']; ?>" ><br />
@@ -50,3 +56,4 @@ if ($_SESSION["logged_user"])
 	Confirmer mot de passe: <input type="password" name="confirm_passwd" value=""/><br />
 	<input type="submit" name="submit" value="OK">
 </form>
+</div>

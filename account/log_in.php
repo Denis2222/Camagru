@@ -2,7 +2,8 @@
 $login = trim(htmlspecialchars($_POST['username']));
 $passwd = hash(whirlpool, htmlspecialchars($_POST['pwd']));
 
-if ($_POST['submit'] == 'OK')
+if ($_POST['submit'] == 'LOGIN')
+{
 	if ($db)
 		$error = checkLogIn($db, $login, $passwd);
 	if (!$error)
@@ -10,9 +11,16 @@ if ($_POST['submit'] == 'OK')
 		$cursor = $db->query('SELECT * FROM user WHERE login = "'.$login.'"');
 		$data = $cursor->fetch();
 
-		$_SESSION['logged_user'] = $login;
-		$_SESSION['logged_id'] = $data['id'];
+		if ($data['confirm'] != "")
+		{
+			mess("Confirmez votre email");
+		} else {
+			$_SESSION['logged_user'] = $login;
+			$_SESSION['logged_id'] = $data['id'];
+		}
 	}
+}
+
 if ($_SESSION["logged_user"])
 {
 	header('Location: ./');
@@ -24,11 +32,12 @@ if ($_SESSION["logged_user"])
 <form method="post" action="">
 	<?php
 		if ($error)
-			echo "<p>$error</p>";
+			mess($error);
 	?>
 	<input type="text" name="username" placeholder="login" >
 	<input type="password" name="pwd" placeholder="passe">
-	<input type="submit" name="submit" value="OK">
+	<input type="submit" name="submit" value="LOGIN">
 </form>
+
 <a href="?page=pwdlost">Reset Password</a>
 <a href="?page=sign_in">Sign In</a>
