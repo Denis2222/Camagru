@@ -1,13 +1,22 @@
 <?php
-$max_par_page = 3;
+$max_par_page = 6;
 
 if ($_GET['action'] == "delete" && $_GET['id'] > 0) {
-  $id = intval($_GET['id']);
-	$sql = "DELETE FROM `img` WHERE `id` = ".$id." AND `uid` = ".$_SESSION['logged_id'];
-	$req = $db->query($sql) or die(mysql_error);
+	$id = intval($_GET['id']);
+	$sql = "SELECT * FROM img WHERE id = ".$id;
+	$requ = $db->query($sql);
+	$imginfo = $requ->fetch();
+	if ($imginfo['uid'] == $_SESSION['logged_id'])
+	{
 
-	if ($req->rowCount() == 1)
-		unlink($renderDir.'pict-'.$id.'.jpeg');
+		$sql = "DELETE FROM `img` WHERE `id` = ".$id." AND `uid` = ".$_SESSION['logged_id'];
+		$req = $db->query($sql) or die(mysql_error);
+		if ($req->rowCount() == 1)
+		{
+			if (file_exists ($renderDir.'pict-'.$id.'.jpeg'))
+				unlink($renderDir.'pict-'.$id.'.jpeg');
+		}
+	}
 }
 
 if ($_GET['action'] == "view" && $_GET['id'] > 0) {
@@ -44,7 +53,7 @@ foreach  ($db->query($sql) as $row) {
             			<img src="./resources/delete.png">
             		</a>';
             	}
-  echo '   </div>
+  	echo '   </div>
         </div>';
 }
 

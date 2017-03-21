@@ -1,10 +1,20 @@
 <?php
+include("./config/database.php");
+
 try{
-	$db = new PDO('mysql:host=denis-moureu.fr;dbname=camagru;charset=utf8', 'camagru', 'camagru');
+	$db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
 	 echo 'Échec lors de la connexion : ' . $e->getMessage();
 }
+
+	foreach($TABLES as $table)
+	{
+		$req = $db->query("show tables like \"".$table."\";");
+		$info = $req->fetch();
+		if (!$info)
+			exit("Please Create Database First<br /><a href='./config/setup.php'>Setup</a></br>");
+	}
 
   $renderDir = './rendu/';
 
@@ -14,8 +24,7 @@ try{
 		<SCRIPT LANGUAGE="JavaScript">
 			setTimeout(function (){
 				alert("<?php echo addslashes($txt);?>");
-			}
-			,1);
+			}, 1);
 		</SCRIPT>
 		<?php
 	}
@@ -40,7 +49,7 @@ function checkLogIn ($db, $login, $passwd) {
 				return 'Wrong password';
 			else
 			{
-				$_SESSION['logged_id'] = $data['id'];
+				//$_SESSION['logged_id'] = $data['id'];
 				return ;
 			}
 	}

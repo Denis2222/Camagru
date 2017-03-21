@@ -23,9 +23,9 @@ if ($_POST['submit'] == 'OK') {
 			if ($data['login'] == $login) {
 
 				$token = bin2hex(random_bytes(30));
-		    $req = $db->exec("UPDATE user SET confirm = '".$token."' WHERE login = '".$login."' ");
-		    mail($email, 'Confirmation de votre inscription sur camagru', "Valider ce lien afin 'activer votre compte http://localhost:8080/Camagru/index.php?page=signconfirm&token=".$token);
-		    echo 'Email de confirmation envoye';
+		    	$req = $db->exec("UPDATE user SET confirm = '".$token."' WHERE login = '".$login."' ");
+		    	mail($email, 'Confirmation de votre inscription sur camagru', "Valider ce lien afin 'activer votre compte http://localhost:8080/Camagru/index.php?page=signconfirm&token=".$token);
+		    	mess('Email de confirmation envoye');
 
 				//mail($email, 'Inscription', "Vous venez de vous inscrire sur ce super site inutile ! Bravo !");
 			}

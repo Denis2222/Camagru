@@ -107,6 +107,7 @@
   background-size: cover;
   padding: 0;
   margin: 0;
+  cursor: pointer;
 }
 
 .imgfull {
@@ -160,6 +161,7 @@
   width: 100px;
   height: 78px;
   margin: 5px;
+	cursor:pointer;
 }
 #addable {
   margin:10px;

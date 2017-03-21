@@ -3,7 +3,8 @@
   ob_start();
   if ($_GET['log_out'] == 'true') {
   	$_SESSION['logged_user'] = NULL;
-  	header('Location: index.php');
+	$_SESSION['logged_id'] = 0;
+  	header('Location: logout.php');
   }
   require_once('config.php');
 ?>
@@ -37,11 +38,11 @@
     			include 'account/signconfirm.php';
     			break;
         default:
-          include 'album.php';
+          include 'gallery.php';
           break;
     	}
     } else if ($_GET['page'] == 'gallery' || !$_GET['page']) {
-      include 'album.php';
+      include 'gallery.php';
     } else if ($_GET['page'] == 'photo') {
     		include 'app/main.php';
     }
