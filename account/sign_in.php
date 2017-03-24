@@ -11,11 +11,13 @@ if ($_POST['submit'] == 'OK') {
 				$error = checkAlreadyUsed($db, $login, $email);
 	if (!$error) {
 		$passwd = hash(whirlpool, $passwd);
-		$req = $db->prepare('INSERT INTO user(login, email, passwd) VALUES(:login, :email, :passwd)');
+		$req = $db->prepare('INSERT INTO user(login, email, passwd, passwdlost, confirm) VALUES(:login, :email, :passwd, :passwdlost, :confirm)');
 		$req->execute(array(
 			'login' => $login,
 			'email' => $email,
 			'passwd' => $passwd,
+			'passwdlost' => "",
+			'confirm' => ""
 			));
 		$cursor = $db->query('SELECT * FROM user WHERE login = "' . $login . '"');
 
