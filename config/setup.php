@@ -4,6 +4,8 @@ include("./database.php");
 try{
 	$db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$db->query("CREATE DATABASE IF NOT EXISTS $DB_NAME");
+	$db->query("use $DB_NAME");
 } catch (PDOException $e) {
 	 echo 'Échec lors de la connexion : ' . $e->getMessage();
 }
