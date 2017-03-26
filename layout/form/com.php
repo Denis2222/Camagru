@@ -19,7 +19,7 @@ if ($_POST['submitcom'] && $_SESSION['logged_id'] > 0) {
 	$sql = "SELECT email FROM user INNER JOIN img ON user.id = img.uid WHERE img.id = ".$id." ";
 	$yollo = $db->query($sql);
 	$datayollo = $yollo->fetch();
-	mail($datayollo['email'], 'Nouveau commentaire sur camagru', "Votre photo a recu un commentaire http://localhost:8080/Camagru/index.php?page=gallery&action=view&id=".$id);
+	mail($datayollo['email'], 'Nouveau commentaire sur camagru', "Votre photo a recu un commentaire http://".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."?page=gallery&action=view&id=".$id);
 	mess('Commentaire poste');
 }
 
