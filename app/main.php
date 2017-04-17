@@ -4,54 +4,74 @@ if ($_GET['action'] == "reset")
   unset($_SESSION['tmp_img']);
 }
 if(isset($_POST['addable'])){
+	var_dump($_FILES['newaddable']);
     if(@getimagesize($_FILES['newaddable']['tmp_name']) == FALSE){
-        echo "<span class='image_select'>please select an image</span>";
+        echo "<div class='decobox'>please select an image</span>";
 
     }
     else {
         $image = addslashes($_FILES['newaddable']['tmp_name']);
         $name  = addslashes($_FILES['newaddable']['name']);
-        $image = file_get_contents($image);
-        $image = base64_encode($image);
-        //saveimage($name,$image);
-        $uploaddir = './toy/'; //this is your local directory
-        $uploadfile = $uploaddir . basename($_FILES['newaddable']['name']);
 
-        echo "<p>";
-            if (move_uploaded_file($_FILES['newaddable']['tmp_name'], $uploadfile)) {
-							// file uploaded and moved
-						} else { //uploaded but not moved
-						}
-        echo "</p>";
+		if($_FILES['newaddable']['size'] <= 700000 && $_FILES['newaddable']["type"] == "image/png") {
+	        $image = file_get_contents($image);
+	        $image = base64_encode($image);
+	        //saveimage($name,$image);
+	        $uploaddir = './toy/'; //this is your local directory
+	        $uploadfile = $uploaddir . basename($_FILES['newaddable']['name']);
+
+	        echo "<p>";
+	            if (move_uploaded_file($_FILES['newaddable']['tmp_name'], $uploadfile)) {
+					// file uploaded and moved
+				} else { //uploaded but not moved
+				}
+	        echo "</p>";
+		} else {
+			echo "<div class='decobox'>";
+			if ($_FILES['newaddable']['size'] > 700000)
+				echo " File too big: ".$_FILES['newaddable']['size']." max : 200ko";
+			if ($_FILES['newaddable']["type"] != "image/png")
+				echo " Only PNG allowed";
+			echo "</div>";
+		}
     }
 }
 
 
 if(isset($_POST['altimage'])){
-  echo "HERE";
+  //echo "HERE";
     if(@getimagesize($_FILES['newaltimage']['tmp_name']) == FALSE){
         echo "<span class='image_select'>please select an image</span>";
     }
     else {
-      echo "HERE";
         $image = addslashes($_FILES['newaltimage']['tmp_name']);
         $name  = addslashes($_FILES['newaltimage']['name']);
-        $image = file_get_contents($image);
-        $image = base64_encode($image);
-        //saveimage($name,$image);
-        $uploaddir = './tmp/'; //this is your local directory
-        $uploadfile = $uploaddir . basename($_FILES['newaltimage']['name']);
-        echo $uploadfile;
-        $_SESSION['tmp_img'] = $uploadfile;
-        print_r($_FILES['newaltimage']);
-        echo "<p>";
-            if (move_uploaded_file($_FILES['newaltimage']['tmp_name'], $uploadfile)) {
-              echo "move OK";
-							// file uploaded and moved
-						} else { //uploaded but not moved
-              echo "up not move";
-						}
-        echo "</p>";
+		//var_dump($_FILES['newaltimage']);
+		if($_FILES['newaltimage']['size'] <= 700000 && $_FILES['newaltimage']["type"] == "image/jpeg") {
+	        $image = file_get_contents($image);
+	        $image = base64_encode($image);
+	        //saveimage($name,$image);
+	        $uploaddir = './tmp/'; //this is your local directory
+	        $uploadfile = $uploaddir . basename($_FILES['newaltimage']['name']);
+	        echo $uploadfile;
+	        $_SESSION['tmp_img'] = $uploadfile;
+	        //print_r($_FILES['newaltimage']);
+	        echo "<p>";
+	            if (move_uploaded_file($_FILES['newaltimage']['tmp_name'], $uploadfile)) {
+	              //echo "move OK";
+								// file uploaded and moved
+							} else { //uploaded but not moved
+	              //echo "up not move";
+							}
+	        echo "</p>";
+		} else {
+			echo "<div class='decobox'>";
+			if ($_FILES['newaltimage']['size'] > 700000)
+				echo "File too big: ".$_FILES['newaltimage']['size']." max : 700ko";
+			if ($_FILES['newaltimage']["type"] != "image/jpeg")
+				echo "Only JPEG allowed";
+			echo "</div>";
+		}
     }
 }
 
