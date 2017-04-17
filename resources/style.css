@@ -97,6 +97,17 @@
   height:30px;
 }
 
+.delaltimg{
+    background-image: url(../resources/delete.png);
+    position: absolute;
+    display: block;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+}
+
 .thumb .del img {
   width: 30px;
 }

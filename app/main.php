@@ -7,7 +7,6 @@ if(isset($_POST['addable'])){
 	var_dump($_FILES['newaddable']);
     if(@getimagesize($_FILES['newaddable']['tmp_name']) == FALSE){
         echo "<div class='decobox'>please select an image</span>";
-
     }
     else {
         $image = addslashes($_FILES['newaddable']['tmp_name']);
@@ -29,7 +28,7 @@ if(isset($_POST['addable'])){
 		} else {
 			echo "<div class='decobox'>";
 			if ($_FILES['newaddable']['size'] > 700000)
-				echo " File too big: ".$_FILES['newaddable']['size']." max : 200ko";
+				echo " File too big: ".$_FILES['newaddable']['size']." octets | max : 200ko";
 			if ($_FILES['newaddable']["type"] != "image/png")
 				echo " Only PNG allowed";
 			echo "</div>";
@@ -60,14 +59,14 @@ if(isset($_POST['altimage'])){
 	            if (move_uploaded_file($_FILES['newaltimage']['tmp_name'], $uploadfile)) {
 	              //echo "move OK";
 								// file uploaded and moved
-							} else { //uploaded but not moved
-	              //echo "up not move";
-							}
+				} else { //uploaded but not moved
+      //echo "up not move";
+				}
 	        echo "</p>";
 		} else {
 			echo "<div class='decobox'>";
 			if ($_FILES['newaltimage']['size'] > 700000)
-				echo "File too big: ".$_FILES['newaltimage']['size']." max : 700ko";
+				echo "File too big: ".$_FILES['newaltimage']['size']." octets |  max : 700ko";
 			if ($_FILES['newaltimage']["type"] != "image/jpeg")
 				echo "Only JPEG allowed";
 			echo "</div>";
@@ -88,9 +87,7 @@ if(isset($_POST['altimage'])){
   	</form>
     <?php } else {
       echo '<img id="photoimg" src="'.$_SESSION['tmp_img'].'">
-      <a class="del" href="index.php?page=photo&action=reset">
-        <img src="./resources/delete.png">
-      </a>';
+      <a class="delaltimg" href="index.php?page=photo&action=reset"></a>';
     }?>
   </div>
 	<video id="video"></video>
